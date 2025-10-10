@@ -19,6 +19,7 @@ public class UserServiceImpl implements IUserService {
         return this.getOne(new QueryWrapper<User>().eq("username", username));
     }
 
+    // TODO: 如何去掉后面的实现请求
     @Override
     public boolean saveBatch(Collection<User> entityList, int batchSize) {
         return false;

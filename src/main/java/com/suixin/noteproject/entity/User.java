@@ -10,10 +10,12 @@ import java.time.LocalDateTime;
 @Data
 @TableName("user")
 public class User {
-    @TableId(type = IdType.AUTO)
-    private Long id;
+    @TableId(type = IdType.ASSIGN_ID)
+    private String id;
     private String username;
     private String password;
     private String email;
     private LocalDateTime createdAt;
+
+    private String roles;
 }

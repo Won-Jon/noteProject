@@ -5,8 +5,10 @@ import com.suixin.noteproject.entity.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Component;
 
+import javax.crypto.SecretKey;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +17,7 @@ import java.util.stream.Collectors;
 
 @Component
 public class JwtUtil {
-    private static final String SECRET = "plan-system-secret-key-2025";
+    private static final SecretKey SECRET = Keys.secretKeyFor(SignatureAlgorithm.HS512);
     private static final long EXPIRATION = 24 * 60 * 60 * 1000; // 24小时
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
@@ -34,7 +36,7 @@ public class JwtUtil {
                 .addClaims(claims)
                 .setSubject(String.valueOf(user.getId()))
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION))
-                .signWith(SignatureAlgorithm.HS512, SECRET)
+                .signWith(SECRET,SignatureAlgorithm.HS512)
                 .compact();
     }
 

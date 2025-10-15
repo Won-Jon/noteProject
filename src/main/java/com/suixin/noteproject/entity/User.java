@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Data
 @TableName("user")
@@ -15,7 +15,7 @@ public class User {
     private String username;
     private String password;
     private String email;
-    private LocalDateTime createdAt;
+    private Date createdAt;
 
     private String roles;
 }

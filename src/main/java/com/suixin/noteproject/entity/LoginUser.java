@@ -20,7 +20,6 @@ public class LoginUser implements UserDetails {
     private String username;
     private List<String> roles;
 
-    // ========== UserDetails 必须实现的方法 ==========
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         // Spring Security 要求角色前缀是 "ROLE_"
@@ -32,11 +31,6 @@ public class LoginUser implements UserDetails {
     @Override
     public String getPassword() {
         return ""; // JWT 无密码，返回空
-    }
-
-    @Override
-    public String getUsername() {
-        return username;
     }
 
     @Override

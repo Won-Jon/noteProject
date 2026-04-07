@@ -1,5 +1,6 @@
 package com.suixin.noteproject.util;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.suixin.noteproject.entity.User;
 import io.jsonwebtoken.Claims;
@@ -23,7 +24,7 @@ public class JwtUtil {
 
     // 将对象转为只包含空字段的Map
     public static Map<String, Object> toNonBlankClaims(Object obj) {
-        Map<String, Object> map = objectMapper.convertValue(obj, Map.class);
+        Map<String, Object> map = objectMapper.convertValue(obj, new TypeReference<>() {});
         return map.entrySet().stream()
                 .filter(entry -> entry.getValue() != null
                         && !entry.getValue().toString().isBlank())
@@ -63,7 +64,7 @@ public class JwtUtil {
 
     // 通用提取方法
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
-        final Claims claims = extractAllClaims(token);
+        Claims claims = extractAllClaims(token);
         return claimsResolver.apply(claims);
     }
 

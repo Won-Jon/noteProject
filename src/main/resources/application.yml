@@ -12,3 +12,13 @@ spring:
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl  # 开发时打印 SQL
+
+# 日志配置（Spring Boot 默认使用 SLF4J + Logback）
+logging:
+  file:
+    path: logs  # 日志文件存储路径，可修改为绝对路径如 D:/logs 或 /var/log
+  level:
+    root: INFO
+    com.suixin.noteproject: DEBUG
+    com.suixin.noteproject.mapper: DEBUG  # MyBatis SQL 日志
+    org.springframework.security: WARN

@@ -9,6 +9,8 @@ public interface IUserService extends IService<User> {
 
     void register(String username, String rawPassword);
 
+    String login(String username, String rawPassword);
+
     Optional<User> findByUsername(String username);
 
 }
